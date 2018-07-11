@@ -8,6 +8,8 @@ import models.Lesson;
 import models.Mentor;
 import models.Student;
 
+import java.util.List;
+
 public class Runner {
 
     public static void main(String[] args) {
@@ -25,9 +27,11 @@ public class Runner {
         Student student2 = new Student("Ben", 24, 23, course);
         DBStudent.save(student2);
 
-
         Mentor mentor = new Mentor("Zsolt", student2);
         DBMentor.save(mentor);
+
+        List<Student> courseStudents = DBCourse.findStudents(course);
+        List<Lesson> courseLessons = DBCourse.findLessons(course);
 
         System.exit(0);
     }
