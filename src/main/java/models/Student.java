@@ -1,17 +1,20 @@
 package models;
 
 
+import db.IDB;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "students")
-public class Student {
+public class Student implements IDB {
 
     private int id;
     private String name;
     private int age;
     private int enrollmentNumber;
     private Course course;
+    private Mentor mentor;
 
     public Student(){}
 
@@ -68,5 +71,13 @@ public class Student {
     }
     public void setCourse(Course course){
         this.course = course;
+    }
+
+    @OneToOne(mappedBy = "student", fetch = FetchType.LAZY)
+    public Mentor getMentor() {
+        return mentor;
+    }
+    public void setMentor(Mentor mentor) {
+        this.mentor = mentor;
     }
 }

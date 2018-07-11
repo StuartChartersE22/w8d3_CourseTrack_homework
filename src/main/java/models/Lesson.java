@@ -1,13 +1,14 @@
 package models;
 
 
+import db.IDB;
 import sun.plugin.dom.core.CoreConstants;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="lessons")
-public class Lesson {
+public class Lesson implements IDB {
 
     private int id;
     private String title;

@@ -1,18 +1,22 @@
 package models;
 
+import db.IDB;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "mentors")
-public class Mentor {
+public class Mentor implements IDB {
 
     private int id;
     private String name;
+    private Student student;
 
     public Mentor(){}
 
-    public Mentor(String name){
+    public Mentor(String name, Student student){
         this.name = name;
+        this.student = student;
     }
 
     @Id
@@ -34,4 +38,12 @@ public class Mentor {
         this.name = name;
     }
 
+    @OneToOne
+    @JoinColumn(name = "student_id", nullable = false)
+    public Student getStudent(){
+        return this.student;
+    }
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 }
